@@ -6,7 +6,7 @@ const categoriesRoutes = Router();
 
 
 
-categoriesRoutes.post("/", (request, response) => {
+categoriesRoutes.post("/", (request, response) => { 
     return createCategoryController.handler(request, response);
 });
 
