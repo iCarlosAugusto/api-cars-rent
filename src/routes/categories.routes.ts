@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createCategoryController } from '../modules/useCases/createCategory';
+import createCategoryController  from '../modules/useCases/createCategory';
 import { listCategoriesController } from '../modules/useCases/listCategories';
 
 const categoriesRoutes = Router();
@@ -7,7 +7,7 @@ const categoriesRoutes = Router();
 
 
 categoriesRoutes.post("/", (request, response) => { 
-    return createCategoryController.handler(request, response);
+    return createCategoryController().handler(request, response);
 });
 
 categoriesRoutes.get("/", (request, response) => {
