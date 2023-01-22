@@ -8,6 +8,8 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
     "express": "^4.18.2",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
