@@ -1,5 +1,6 @@
-import { ICategoryRepository } from "../../cars/repositories/ICategoryRepisotory";
+
 import { inject, injectable } from "tsyringe";
+import { ICategoryRepository } from "../../repositories/ICategoryRepisotory";
 interface IRequest {
     name: string;
     description: string;

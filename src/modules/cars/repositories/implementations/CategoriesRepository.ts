@@ -2,7 +2,6 @@ import { getRepository, Repository } from "typeorm";
 import { Category } from "../../entities/Category";
 import { ICategoryRepository } from "../ICategoryRepisotory";
 
-
 class CategoriesRepository implements ICategoryRepository {
 
     private repository: Repository<Category>;
