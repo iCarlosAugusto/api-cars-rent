@@ -1,5 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 import { User } from "../../entities/User";
+import { IUserRepository } from "../IUserRepository";
 
 class UserRepository implements IUserRepository {
 
@@ -18,6 +19,12 @@ class UserRepository implements IUserRepository {
         });
 
         await this.repository.save(user);
+    }
+
+    async findOne(email: string) : Promise<User> {
+        
+        const user = await this.repository.findOne({email});
+        return user;
     }
 }
 
