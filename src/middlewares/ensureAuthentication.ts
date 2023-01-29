@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import { AppError } from "../errors/AppError";
 import { UserRepository } from "../modules/accounts/repositories/implementations/UserRepository";
 
 interface IAuthentication {
@@ -10,7 +11,7 @@ async function ensureAuthentication(request: Request, response: Response, next: 
     const authHeader = request.headers.authorization;
 
     if(!authHeader){
-        throw new Error("Token is missing!");
+        throw new AppError("Token is missing!");
     }
 
     const [, token] = authHeader.split(" ");
@@ -22,12 +23,12 @@ async function ensureAuthentication(request: Request, response: Response, next: 
         const user = userRepository.findById(userId);
 
         if(!user){
-            throw new Error("No user found!");
+            throw new AppError("No user found!");
         }
 
         next();
     } catch (error) {
-        throw new Error('Invalid token!');
+        throw new AppError('Invalid token!');
     }
     
 };
