@@ -1,3 +1,5 @@
+import { v4 as uuidV4 } from "uuid";
+
 class Car {
 
     id: string;
@@ -17,6 +19,12 @@ class Car {
     brand: string;
 
     create_at: Date;
+
+    constructor() {
+        this.id = uuidV4();
+        this.available = true;
+        this.create_at = new Date();
+    }
 }
 
 export { Car };

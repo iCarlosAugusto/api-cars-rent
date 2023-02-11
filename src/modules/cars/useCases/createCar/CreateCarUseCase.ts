@@ -1,3 +1,5 @@
+import { AppError } from "../../../../errors/AppError";
+import { Car } from "../../entities/Car";
 import { ICarRepository } from "../../repositories/ICarRepository";
 
 interface IRequest {
@@ -14,9 +16,13 @@ class CreateCarUseCase {
 
     constructor(private carRepository: ICarRepository) {}
 
-    async execute(carData : IRequest) {
-        console.log(carData);
-        await this.carRepository.create({...carData});
+    async execute(carData : IRequest) : Promise<Car>  {
+        const carAlreadyExists = await this.carRepository.findByName(carData.name);
+        if(carAlreadyExists){
+            throw new AppError("Car already exists!");
+        }
+        const car = await this.carRepository.create({...carData});
+        return car;
     };
 }
 
