@@ -1,3 +1,4 @@
+import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { Car } from "../../entities/Car";
 import { ICarRepository } from "../../repositories/ICarRepository";
@@ -12,9 +13,13 @@ interface IRequest {
     category_id: string;
 }
 
+@injectable()
 class CreateCarUseCase {
 
-    constructor(private carRepository: ICarRepository) {}
+    constructor(
+        @inject("CarRepository")
+        private carRepository: ICarRepository
+    ) {}
 
     async execute(carData : IRequest) : Promise<Car>  {
         const carAlreadyExists = await this.carRepository.findByName(carData.name);

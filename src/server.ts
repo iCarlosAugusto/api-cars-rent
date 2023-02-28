@@ -7,6 +7,7 @@ import "./shared/container";
 import { userRoutes } from './routes/users.routes';
 import { authenticationRoute } from './routes/authentication.routes';
 import { AppError } from './errors/AppError';
+import { carsRoutes } from './routes/cars.routes';
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
 app.use("/categories", categoriesRoutes);
 app.use("/users", userRoutes);
 app.use("/authentication", authenticationRoute);
+app.use("/cars", carsRoutes);
 
 app.listen(3333, () => console.log('Server is running...'));
